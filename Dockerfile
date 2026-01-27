@@ -5,13 +5,14 @@ WORKDIR /usr/src/app
 # Install system dependencies (git is required by quartz)
 RUN apk add --no-cache git
 
-# Copy dependency definitions
-COPY package.json tsconfig.json ./
+# Clone the Quartz repository (Engine)
+RUN git clone https://github.com/jackyzha0/quartz.git .
+RUN git checkout v4.5.2
 
-# Install dependencies (Standard Install)
+# Install dependencies
 RUN npm install
 
-# Copy configuration
+# Copy OUR configuration (Overwrite upstream defaults)
 COPY quartz.config.ts quartz.layout.ts ./
 
 # Create content directory
@@ -21,4 +22,4 @@ RUN mkdir content
 EXPOSE 8080
 
 # Run Quartz
-CMD ["./node_modules/.bin/quartz", "build", "--serve", "--port", "8080", "--concurrency", "1"]
+CMD ["npx", "quartz", "build", "--serve", "--port", "8080", "--concurrency", "1"]
