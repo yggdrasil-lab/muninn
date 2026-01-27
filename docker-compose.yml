@@ -9,7 +9,7 @@ networks:
 
 services:
   wiki:
-    image: ${REGISTRY_PREFIX}/muninn:latest
+    image: ${REGISTRY_PREFIX}muninn:latest
     build:
       context: .
       dockerfile: Dockerfile
