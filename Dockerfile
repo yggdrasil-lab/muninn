@@ -21,4 +21,4 @@ RUN mkdir content
 EXPOSE 8080
 
 # Run Quartz
-CMD ["npx", "quartz", "build", "--serve", "--port", "8080", "--concurrency", "1"]
+CMD ["./node_modules/.bin/quartz", "build", "--serve", "--port", "8080", "--concurrency", "1"]
