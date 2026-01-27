@@ -8,8 +8,8 @@ RUN apk add --no-cache git
 # Copy dependency definitions
 COPY package.json tsconfig.json ./
 
-# Install dependencies (Clean Install)
-RUN npm ci
+# Install dependencies (Standard Install)
+RUN npm install
 
 # Copy configuration
 COPY quartz.config.ts quartz.layout.ts ./
