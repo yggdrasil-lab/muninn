@@ -30,11 +30,10 @@ services:
         - "traefik.http.routers.muninn.tls.certresolver=cloudflare"
         - "traefik.http.services.muninn.loadbalancer.server.port=8080"
     volumes:
-      # Mount the content from Atlas/Muninn
-      - ${OBSIDIAN_VAULT_PATH}/second-brain/Atlas/Muninn:/quartz/content
+      # Mount the content to the app directory
+      - ${OBSIDIAN_VAULT_PATH}/second-brain/Atlas/Muninn:/usr/src/app/content
     environment:
       - DOMAIN_NAME=${DOMAIN_NAME}
-      - QUARTZ_content=/quartz/content
       # Prevent build loops
       - CI=true
     networks:
