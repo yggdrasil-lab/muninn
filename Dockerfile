@@ -1,4 +1,4 @@
-FROM node:20-alpine
+FROM node:22-alpine
 
 WORKDIR /usr/src/app
 
@@ -8,8 +8,8 @@ RUN apk add --no-cache git
 # Copy dependency definitions
 COPY package.json tsconfig.json ./
 
-# Install dependencies (including quartz)
-RUN npm install
+# Install dependencies (Clean Install)
+RUN npm ci
 
 # Copy configuration
 COPY quartz.config.ts quartz.layout.ts ./
