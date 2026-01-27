@@ -30,6 +30,7 @@ services:
       # Mount the content from Atlas/Muninn
       - ${OBSIDIAN_VAULT_PATH}/second-brain/Atlas/Muninn:/quartz/content
     environment:
+      - DOMAIN_NAME=${DOMAIN_NAME}
       - QUARTZ_content=/quartz/content
       # Prevent build loops
       - CI=true
