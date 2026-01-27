@@ -9,7 +9,10 @@ networks:
 
 services:
   wiki:
-    image: ghcr.io/shommey/quartz:v4
+    image: ${REGISTRY_PREFIX}/muninn:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     labels:
       - "com.docker.compose.project=${STACK_NAME}"
     deploy:
@@ -26,13 +29,8 @@ services:
     volumes:
       # Mount the content from Atlas/Muninn
       - ${OBSIDIAN_VAULT_PATH}/second-brain/Atlas/Muninn:/quartz/content
-      # Mount the configuration files
-      - ./quartz.config.ts:/quartz/quartz.config.ts
-      - ./quartz.layout.ts:/quartz/quartz.layout.ts
     environment:
       - QUARTZ_content=/quartz/content
-      - QUARTZ_config=/quartz/quartz.config.ts
-      - QUARTZ_layout=/quartz/quartz.layout.ts
       # Prevent build loops
       - CI=true
     networks:
