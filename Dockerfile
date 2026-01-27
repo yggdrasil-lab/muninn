@@ -1,9 +1,9 @@
-FROM node:22-alpine
+FROM node:22-slim
 
 WORKDIR /usr/src/app
 
 # Install system dependencies (git is required by quartz)
-RUN apk add --no-cache git
+RUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
 
 # Clone the Quartz repository (Engine)
 RUN git clone https://github.com/jackyzha0/quartz.git .
