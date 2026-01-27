@@ -15,8 +15,7 @@ RUN npm install
 # Copy OUR configuration (Overwrite upstream defaults)
 COPY quartz.config.ts quartz.layout.ts ./
 
-# Create content directory
-RUN mkdir content
+
 
 # Expose port
 EXPOSE 8080
